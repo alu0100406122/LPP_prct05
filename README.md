@@ -1,7 +1,8 @@
-*Práctica 05
-**Lenguajes y Paradigmas de la Programación
+#Práctica 05
 
-***Pruebas Unitarias
+##Lenguajes y Paradigmas de la Programación
 
-Práctica de laboratorio. Se ha de realizar utilizando el lenguaje de programaci´on Ruby y el
-paradigma de Programaci´on Orientada a Objetos.
+###Pruebas Unitarias
+
+Práctica de laboratorio. 
+Se ha de realizar utilizando el lenguaje de programación Ruby y el paradigma de Programación Orientada a Objetos.
