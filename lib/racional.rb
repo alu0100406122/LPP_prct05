@@ -1,5 +1,5 @@
 
-require './lib/gcd.rb'
+require '../lib/gcd.rb'
 
 class Racional
   
@@ -13,22 +13,17 @@ class Racional
     "(#{@num}/#{@den})"
   end
   
-  def escalar(value)
-    Racional.new(@num * value, @den)
-  end
-  
   def * (other)
     x = gcd(@num * other.num, @den * other.den)
-    Racional.new((@num*other.num)/x, (@den*other.den)/x)
+    Racional.new((@num*other.num) / x, (@den*other.den) / x)
   end
   
   def / (other)
     x = gcd(@num * other.den, @den * other.num)
-    Racional.new(@num * other.den, @den * other.num)
+    Racional.new((@num * other.den) / x, (@den * other.num) / x)
   end
   
   def + (other)
-    
     if (@den == other.den)
         num_ = @num + other.num
         den_ = @den
@@ -45,7 +40,6 @@ class Racional
   end
   
   def - (other)
-    
     if (@den == other.den)
         num_ = @num - other.num
         den_ = @den
@@ -63,10 +57,12 @@ class Racional
   
 end
 
-#obj1 = Racional.new(6,2)
-#obj2 = Racional.new(4,3)
+obj1 = Racional.new(6,2)
+obj2 = Racional.new(4,3)
 
+#puts "Multiplicación"
 #puts (obj1.*(obj2)).to_s
+#puts "División"
 #puts (obj1./(obj2)).to_s
 #puts "Suma"
 #puts obj1+(obj2)
