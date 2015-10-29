@@ -1,62 +1,91 @@
 
-require "./gcd.rb"
+require '../lib/gcd.rb'
 
 class Racional
   
-  attr_accessor :num, :den, :x, :y
+  attr_accessor :num, :den
   
   def initialize(num, den)
     @num, @den = num, den
   end
   
   def to_s
-    "(#{@num},#{@den})"
+    "(#{@num}/#{@den})"
   end
   
-  def * (value)
+  def escalar(value)
     Racional.new(@num * value, @den)
   end
   
   def * (other)
-    Racional.new(@num * other.num, @den * other.den)
+    x = gcd(@num * other.num, @den * other.den)
+    Racional.new((@num*other.num)/x, (@den*other.den)/x)
   end
   
   def / (other)
+    x = gcd(@num * other.den, @den * other.num)
     Racional.new(@num * other.den, @den * other.num)
   end
   
   def + (other)
-    @num = (@num / gcd(@num, @den))
-    @den = (@den / gcd(@num, @den))
-    other.num = (other.num / gcd(other.num, other.den))
-    other.den = (other.den / gcd(other.num, other.den))
-    puts @den
-    puts other.den
+    #x = gcd(@num, @den)
+    #y = gcd(other.num, other.den)
+    #@num = (@num / x)
+    #@den = (@den / x)
+    #other.num = (other.num / y)
+    #other.den = (other.den / y)
     
     if (@den == other.den)
-         Racional.new(@num + other.num, @den)
+        #Racional.new(@num + other.num, @den)
+        num_ = @num + other.num
+        den_ = @den
+        y = gcd(num_, den_)
     else
         x = (@den * other.den)
-        puts x
-        @num = ((x/@den) * @num)
-        other.num = ((x / other.num) * other.num)
-        #@num = @num + other.num
-        puts @num
-        @den = x
-        Racional.new(@num / gcd(@num,@den), @den/gcd(@num,@den))
-    end  
+        num_ = (@num * (x/@den))
+        other.num = (other.num * (x/other.den))
+        num_ = num_ + other.num
+        den_ = x
+        #Racional.new(@num/gcd(@num,@den), @den/gcd(@num,@den))
+        y = gcd(num_, den_)
+    end
+    Racional.new(num_ / y, den_ / y)
   end
   
   def - (other)
-    Racional.new(@num - other.num, @den - other.den)
+    #x = gcd(@num, @den)
+    #y = gcd(other.num, other.den)
+    #@num = (@num / x)
+    #@den = (@den / x)
+    #other.num = (other.num / y)
+    #other.den = (other.den / y)
+    
+    if (@den == other.den)
+        #Racional.new(@num + other.num, @den)
+        num_ = @num - other.num
+        den_ = @den
+        y = gcd(num_, den_)
+    else
+        x = (@den * other.den)
+        num_ = (@num * (x/@den))
+        other.num = (other.num * (x/other.den))
+        num_ = num_ - other.num
+        den_ = x
+        #Racional.new(@num/gcd(@num,@den), @den/gcd(@num,@den))
+        y = gcd(num_, den_)
+    end
+    Racional.new(num_ / y, den_ / y)
   end
   
 end
 
-obj1 = Racional.new(6,5)
-obj2 = Racional.new(8,4)
+#obj1 = Racional.new(6,2)
+#obj2 = Racional.new(4,3)
 
-puts (obj1.*(obj2)).to_s
-puts (obj1./(obj2)).to_s
+#puts (obj1.*(obj2)).to_s
+#puts (obj1./(obj2)).to_s
+#puts "Suma"
+#puts obj1+(obj2)
 
-puts obj1.+(obj2)
+#puts "Resta"
+#puts obj1-(obj2)
