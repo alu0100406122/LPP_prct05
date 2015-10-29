@@ -1,5 +1,5 @@
 
-require '../lib/gcd.rb'
+require './lib/gcd.rb'
 
 class Racional
   
@@ -28,15 +28,8 @@ class Racional
   end
   
   def + (other)
-    #x = gcd(@num, @den)
-    #y = gcd(other.num, other.den)
-    #@num = (@num / x)
-    #@den = (@den / x)
-    #other.num = (other.num / y)
-    #other.den = (other.den / y)
     
     if (@den == other.den)
-        #Racional.new(@num + other.num, @den)
         num_ = @num + other.num
         den_ = @den
         y = gcd(num_, den_)
@@ -46,22 +39,14 @@ class Racional
         other.num = (other.num * (x/other.den))
         num_ = num_ + other.num
         den_ = x
-        #Racional.new(@num/gcd(@num,@den), @den/gcd(@num,@den))
         y = gcd(num_, den_)
     end
     Racional.new(num_ / y, den_ / y)
   end
   
   def - (other)
-    #x = gcd(@num, @den)
-    #y = gcd(other.num, other.den)
-    #@num = (@num / x)
-    #@den = (@den / x)
-    #other.num = (other.num / y)
-    #other.den = (other.den / y)
     
     if (@den == other.den)
-        #Racional.new(@num + other.num, @den)
         num_ = @num - other.num
         den_ = @den
         y = gcd(num_, den_)
@@ -71,7 +56,6 @@ class Racional
         other.num = (other.num * (x/other.den))
         num_ = num_ - other.num
         den_ = x
-        #Racional.new(@num/gcd(@num,@den), @den/gcd(@num,@den))
         y = gcd(num_, den_)
     end
     Racional.new(num_ / y, den_ / y)
